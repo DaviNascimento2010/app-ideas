@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Números Binários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Conversor de números Binários para Decimais</h1>
+    <h2>Digite um número binário: </h2>
+    <input type="text" id="bin"> <input type="button" value="Converter" onclick="convert()"> <!-- Campo de entrada -->
+    <div id="res"></div> <!-- Saída -->
+    <script>
+        function convert() {
+            let binId = document.getElementById('bin');
+            let bin = String(binId.value);
+            let dec = 0;
+            let isBinary = /[2-9]/;
+            
+            //Avisa ao usuário se tiver números diferentes de 0 e 1 ou se tiver mais de 8 caracteres
+            if (isBinary.test(bin) == true || bin.length > 8 || bin.length == 0) {
+                window.alert('Digite valores de até 8 dígitos, com dígitos entre 1 e 0.');
+            } else {
+                function convertToDec(bin) {
+                    for(c = 0; c < bin.length; c++) {
+                        dec += Math.pow(2, c) * bin[bin.length - c - 1];
+                    }
+                    return dec;
+                }
+                res.innerHTML = `O número binário ${binId.value} convertido para decimal é ${convertToDec(bin)}`;
+            }
+        }
+    </script>
+</body>
+</html>
