@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Bin2Dec</h1>
+        </header>
+        <main>
+            <p id="des">Conversor de números binários para números decimais</p>
+            <section id="program">
+                <input type="text" maxlength="8" placeholder="Insira até 8 digítos de 0 à 1" id="input">
+            <button id="ok" onclick="convert()">OK</button>
+            <p class="result">Resultado: <p id="result" class="result"></p></p>
+            
+            </section>
+            
+        </main>
+    </div>
+
+    <script>
+        function convert() {
+    const input = document.querySelector("#input")
+    var inputValue = String(input.value)
+    const result = document.querySelector("#result")
+    
+    if (inputValue === '') {
+        alert('Digite um valor.')
+
+    }else if (!inputValue.includes('0') || !inputValue.includes('1') || !inputValue.includes('0') && !inputValue.includes('1')) {
+        alert('Só podem ser usado números de 0 à 1.')
+
+    }else {
+        let reverse = inputValue.split('').map(Number).reverse()
+        result.innerHTML = reverse.reduce(
+            (accumulator, currentValue, idx) =>
+              accumulator + currentValue * Math.pow(2, idx)
+          )
+        
+    }
+    
+}
+    </script>
+</body>
+</html>
